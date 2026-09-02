@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HW Share - Windows 98</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="desktop">
+  <div class="desktop-icon" onclick="openFolder('Physics')">
+    <div class="icon folder-icon"></div><span>Physics</span>
+  </div>
+  <div class="desktop-icon" onclick="openFolder('Chemistry')">
+    <div class="icon folder-icon"></div><span>Chemistry</span>
+  </div>
+  <div class="desktop-icon" onclick="openFolder('Mathematics')">
+    <div class="icon folder-icon"></div><span>Mathematics</span>
+  </div>
+  <div class="desktop-icon" onclick="openFolder('English')">
+    <div class="icon folder-icon"></div><span>English</span>
+  </div>
+
+  <div id="window" class="window hidden">
+    <div class="titlebar">
+      <span id="windowTitle">My Computer</span>
+      <div class="window-buttons">
+        <button onclick="minimizeWindow()">_</button>
+        <button onclick="maximizeWindow()">□</button>
+        <button onclick="closeWindow()">×</button>
+      </div>
+    </div>
+    <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+    <div class="toolbar">
+      <button onclick="goBack()">← Back</button>
+      <button onclick="goUp()">↑ Up</button>
+      <div class="address">C:\HW_SHARE\<span id="addressPath"></span></div>
+    </div>
+    <div class="explorer" id="explorer"></div>
+    <div class="statusbar"><span id="statusText">Ready</span></div>
+  </div>
+
+  <div class="taskbar">
+    <button class="start" onclick="toggleStart()">Start</button>
+    <div class="task-divider"></div>
+    <button class="task-button" onclick="openRoot()">HW Share</button>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <div id="startMenu" class="start-menu hidden">
+    <div class="start-side">HW SHARE</div>
+    <div class="start-items">
+      <button onclick="openRoot();toggleStart()">My Computer</button>
+      <button onclick="openFolder('Physics');toggleStart()">Physics</button>
+      <button onclick="openFolder('Chemistry');toggleStart()">Chemistry</button>
+      <button onclick="openFolder('Mathematics');toggleStart()">Mathematics</button>
+      <button onclick="openFolder('English');toggleStart()">English</button>
+      <hr>
+      <button onclick="closeWindow();toggleStart()">Shut Down...</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
