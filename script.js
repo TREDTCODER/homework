@@ -2,6 +2,7 @@ const files={
   Physics:[
     {name:"physics_practical.pdf",path:"pdfs/physics/physics_practical.pdf"},
     {name:"DocScanner Aug 19, 2026 7-35 AM.pdf",path:"pdfs/physics/DocScanner Aug 19, 2026 7-35 AM.pdf"}
+    {name:"Rotational_Dynamics_Theory_Formula_Derivation_Book .pdf",path:"Rotational_Dynamics_Theory_Formula_Derivation_Book .pdf"}
   ],
   Chemistry:[
     {name:"chemistry_practical.pdf",path:"pdfs/chemistry/chemistry_practical.pdf"},
