@@ -5,6 +5,7 @@ const files={
   ],
   Chemistry:[
     {name:"chemistry_practical.pdf",path:"pdfs/chemistry/chemistry_practical.pdf"},
+    {name:"Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf",path:"pdfs/chemistry/Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf"}
   ],
   Mathematics:[
     {name:"NONE.pdf",path:"pdfs/mathematics/NONE.pdf"},
