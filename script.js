@@ -1,0 +1,888 @@
+/* ============================================================
+   HW SHARE - Windows NT 4.0 style desktop
+   ============================================================ */
+
+/* ---------- Retro pixel-style icon set (inline SVG) ---------- */
+const ICONS = {
+  folder: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 8 L12 8 L14 10 L29 10 L29 24 A2 2 0 0 1 27 26 L5 26 A2 2 0 0 1 3 24 Z" fill="#ffcc4d" stroke="#8a6d00" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M3 24 L3 8 L11 8 L13 10" fill="none" stroke="#8a6d00" stroke-width="1.2"/>
+    <path d="M4 11 L28 11" stroke="#fff0b3" stroke-width="1.2" opacity="0.85"/>
+  </svg>`,
+  pdf: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 2 H20 L26 8 V29 A1 1 0 0 1 25 30 H7 A1 1 0 0 1 6 29 V3 A1 1 0 0 1 7 2 Z" fill="#ffffff" stroke="#7a7a7a" stroke-width="1"/>
+    <path d="M20 2 L20 8 L26 8 Z" fill="#d9d9d9" stroke="#7a7a7a" stroke-width="1"/>
+    <rect x="9" y="12" width="14" height="2" fill="#000080"/>
+    <rect x="9" y="16" width="14" height="2" fill="#000080"/>
+    <rect x="9" y="20" width="9" height="2" fill="#000080"/>
+    <rect x="6" y="23" width="20" height="7" fill="#c00000"/>
+    <text x="16" y="28.5" font-family="Arial, sans-serif" font-size="6.5" font-weight="bold" fill="#fff" text-anchor="middle">PDF</text>
+  </svg>`,
+  terminal: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="4" width="28" height="21" rx="1" fill="#3a3a3a" stroke="#000" stroke-width="1"/>
+    <rect x="5" y="7" width="22" height="15" fill="#000"/>
+    <text x="7" y="18" font-family="Courier New, monospace" font-size="8.5" fill="#00ff00">C:\\&gt;_</text>
+    <rect x="10" y="27" width="12" height="2" fill="#6b6b6b"/>
+    <rect x="6" y="29" width="20" height="2" fill="#8a8a8a"/>
+  </svg>`,
+  internet: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="16" cy="14" r="11" fill="#3a8ee0" stroke="#0d3c6e" stroke-width="1.2"/>
+    <path d="M5 14 H27 M16 3 C11 8 11 20 16 25 C21 20 21 8 16 3 Z M7.5 8 C11 11 21 11 24.5 8 M7.5 20 C11 17 21 17 24.5 20" fill="none" stroke="#bfe1ff" stroke-width="1"/>
+    <rect x="12" y="24" width="8" height="6" rx="1" fill="#d9d9d9" stroke="#555" stroke-width="1"/>
+    <rect x="14" y="29" width="4" height="2" fill="#777"/>
+  </svg>`,
+  computer: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="4" width="26" height="17" rx="1" fill="#d9d9d9" stroke="#555" stroke-width="1.2"/>
+    <rect x="5" y="6" width="22" height="12" fill="#1084d0"/>
+    <rect x="11" y="22" width="10" height="3" fill="#b5b5b5" stroke="#555" stroke-width="1"/>
+    <rect x="7" y="25" width="18" height="2" fill="#8a8a8a" stroke="#555" stroke-width="1"/>
+  </svg>`,
+  recycle: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9 11 H23 L21.5 29 A2 2 0 0 1 19.5 31 H12.5 A2 2 0 0 1 10.5 29 Z" fill="#e8e8e8" stroke="#555" stroke-width="1.2"/>
+    <rect x="7" y="8" width="18" height="3" fill="#1084d0" stroke="#0d3c6e" stroke-width="1"/>
+    <rect x="12" y="5" width="8" height="3" fill="#1084d0" stroke="#0d3c6e" stroke-width="1"/>
+    <path d="M13 13 L14 28 M16 13 L16 28 M19 13 L18 28" stroke="#8899aa" stroke-width="1"/>
+  </svg>`,
+  error: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="16" cy="16" r="14" fill="#d33" stroke="#7a0000" stroke-width="1"/>
+    <path d="M11 11 L21 21 M21 11 L11 21" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>
+  </svg>`,
+  warn: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 3 L30 27 H2 Z" fill="#ffd83d" stroke="#7a5c00" stroke-width="1" stroke-linejoin="round"/>
+    <rect x="14.5" y="12" width="3" height="8" fill="#000"/>
+    <rect x="14.5" y="22" width="3" height="3" fill="#000"/>
+  </svg>`,
+  info: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="16" cy="16" r="14" fill="#1e6fd6" stroke="#0d3c6e" stroke-width="1"/>
+    <rect x="14.5" y="13" width="3" height="10" fill="#fff"/>
+    <rect x="14.5" y="8" width="3" height="3" fill="#fff"/>
+  </svg>`,
+  modem: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="10" width="26" height="13" rx="1.5" fill="#d9d9d9" stroke="#555" stroke-width="1.2"/>
+    <circle cx="8" cy="16.5" r="2" fill="#2bd12b"/>
+    <circle cx="14" cy="16.5" r="2" fill="#ffd83d"/>
+    <circle cx="20" cy="16.5" r="2" fill="#3a8ee0"/>
+    <path d="M26 10 V6 M26 23 V27" stroke="#555" stroke-width="1.4"/>
+  </svg>`
+};
+
+/* ---------- Data: subject folders & files ---------- */
+const files = {
+  Physics: [
+    { name: "physics_practical.pdf", path: "pdfs/physics/physics_practical.pdf" },
+    { name: "DocScanner Aug 19, 2026 7-35 AM.pdf", path: "pdfs/physics/DocScanner Aug 19, 2026 7-35 AM.pdf" },
+    { name: "Rotational_Dynamics_Theory_Formula_Derivation_Book .pdf", path: "pdfs/physics/Rotational_Dynamics_Theory_Formula_Derivation_Book .pdf" }
+  ],
+  Chemistry: [
+    { name: "chemistry_practical.pdf", path: "pdfs/chemistry/chemistry_practical.pdf" },
+    { name: "Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf", path: "pdfs/chemistry/Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf" }
+  ],
+  Mathematics: [
+    { name: "NONE.pdf", path: "pdfs/mathematics/NONE.pdf" }
+  ],
+  English: [
+    { name: "NONE.pdf", path: "pdfs/english/NONE.pdf" }
+  ]
+};
+const FOLDER_SWITCH = { p: "Physics", c: "Chemistry", e: "English", m: "Mathematics" };
+
+let current = "root";
+let maximized = false;
+let iconSize = "large"; // large | medium | small
+let zTop = 10;
+
+const $ = (id) => document.getElementById(id);
+const win = () => $("window");
+
+/* ============================================================
+   GENERIC WINDOW MANAGEMENT (explorer / terminal / dialup)
+   ============================================================ */
+function bringToFront(el) { zTop += 1; el.style.zIndex = zTop; }
+
+function openWindow(id, taskId) {
+  const el = $(id);
+  el.classList.remove("hidden");
+  bringToFront(el);
+  $(taskId)?.classList.remove("hidden");
+  $(taskId)?.classList.add("active");
+  $("startMenu").classList.add("hidden");
+}
+function closeWindowById(id, taskId) {
+  $(id).classList.add("hidden");
+  $(taskId)?.classList.add("hidden");
+  $(taskId)?.classList.remove("active");
+}
+
+function makeDraggable(windowEl, handleEl) {
+  let dragging = false, offX = 0, offY = 0;
+  handleEl.addEventListener("mousedown", (e) => {
+    if (e.target.closest(".title-btn")) return;
+    dragging = true;
+    bringToFront(windowEl);
+    const rect = windowEl.getBoundingClientRect();
+    offX = e.clientX - rect.left;
+    offY = e.clientY - rect.top;
+  });
+  document.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+    windowEl.style.left = Math.max(0, e.clientX - offX) + "px";
+    windowEl.style.top = Math.max(0, e.clientY - offY) + "px";
+  });
+  document.addEventListener("mouseup", () => { dragging = false; });
+}
+
+/* ============================================================
+   EXPLORER WINDOW
+   ============================================================ */
+function openRoot() { current = "root"; render(); openWindow("window", "task-explorer"); }
+function openFolder(name) { current = name; render(); openWindow("window", "task-explorer"); }
+function closeWindow() { closeWindowById("window", "task-explorer"); }
+function minimizeWindow() { closeWindowById("window", "task-explorer"); }
+function maximizeWindow() {
+  maximized = !maximized;
+  win().style.left = maximized ? "0" : "140px";
+  win().style.top = maximized ? "0" : "55px";
+  win().style.width = maximized ? "100vw" : "760px";
+  win().style.height = maximized ? "calc(100vh - 30px)" : "510px";
+}
+function goBack() { if (current !== "root") { current = "root"; render(); } }
+function goUp() { goBack(); }
+function openPdf(path) { window.open(path, "_blank", "noopener"); }
+
+function render() {
+  const explorer = $("explorer");
+  explorer.innerHTML = "";
+  explorer.className = "explorer icons-" + iconSize;
+  const title = current === "root" ? "HW Share - My Computer" : `HW Share - ${current}`;
+  $("windowTitle").textContent = title;
+  $("addressPath").textContent = current === "root" ? "" : current + "\\";
+
+  if (current === "root") {
+    Object.keys(files).forEach((name) => addItem(name, ICONS.folder, () => openFolder(name), true));
+    $("statusText").textContent = `${Object.keys(files).length} object(s)`;
+  } else {
+    files[current].forEach((file) => addItem(file.name, ICONS.pdf, () => openPdf(file.path), false, file));
+    $("statusText").textContent = `${files[current].length} object(s)`;
+  }
+}
+
+function addItem(name, iconSvg, onOpen, isFolder, fileObj) {
+  const el = document.createElement("div");
+  el.className = "item";
+  el.tabIndex = 0;
+  el.innerHTML = `<div class="item-icon">${iconSvg}</div><div class="item-name">${name}</div>`;
+  el.ondblclick = onOpen;
+  el.onclick = () => select(el);
+  el.oncontextmenu = (e) => { e.preventDefault(); select(el); showItemContextMenu(e, name, onOpen, isFolder); };
+  $("explorer").appendChild(el);
+  return el;
+}
+
+function select(el) {
+  document.querySelectorAll(".item").forEach((x) => x.classList.remove("selected"));
+  el.classList.add("selected");
+}
+
+/* ---------- Menu bar (File / Edit / View / Help) ---------- */
+function toggleMenu(name, evt) {
+  evt.stopPropagation();
+  const dd = $("dd-" + name);
+  const isOpen = !dd.classList.contains("hidden");
+  closeAllMenus();
+  if (!isOpen) {
+    dd.classList.remove("hidden");
+    evt.target.classList.add("active");
+  }
+}
+function closeAllMenus() {
+  document.querySelectorAll(".dropdown").forEach((d) => d.classList.add("hidden"));
+  document.querySelectorAll(".menubar span").forEach((s) => s.classList.remove("active"));
+}
+document.addEventListener("click", closeAllMenus);
+
+function adminDenied() {
+  closeAllMenus();
+  showMessageBox({
+    title: "Access Denied",
+    icon: ICONS.error,
+    text: "Admin Permission Denied.\n\nYou do not have sufficient privileges to perform this operation. Please contact your system administrator.",
+    buttons: [{ label: "OK", primary: true }]
+  });
+}
+function setIconSize(size) {
+  iconSize = size;
+  render();
+  closeAllMenus();
+}
+function refreshExplorer() { render(); closeAllMenus(); }
+function showAbout() {
+  closeAllMenus();
+  showMessageBox({
+    title: "About HW Share",
+    icon: ICONS.info,
+    text: "HW Share Explorer\nVersion 4.00.950\n\n(c) Homework Corp. All rights reserved.\nRunning on a simulated Windows NT-style shell.",
+    buttons: [{ label: "OK", primary: true }]
+  });
+}
+
+/* ---------- Right-click context menu on items/desktop icons ---------- */
+function showItemContextMenu(evt, name, onOpen, isFolder) {
+  removeCtxMenu();
+  const menu = document.createElement("div");
+  menu.className = "ctx-menu";
+  menu.id = "activeCtxMenu";
+  menu.innerHTML = `
+    <div class="ctx-item bold" data-act="open">Open</div>
+    <div class="ctx-item" data-act="edit">Edit</div>
+    <div class="dropdown-sep"></div>
+    <div class="ctx-item" data-act="props">Properties</div>
+  `;
+  document.body.appendChild(menu);
+  positionMenu(menu, evt.clientX, evt.clientY);
+  menu.querySelector('[data-act="open"]').onclick = (e) => { e.stopPropagation(); removeCtxMenu(); onOpen(); };
+  menu.querySelector('[data-act="edit"]').onclick = (e) => { e.stopPropagation(); removeCtxMenu(); adminDenied(); };
+  menu.querySelector('[data-act="props"]').onclick = (e) => {
+    e.stopPropagation(); removeCtxMenu();
+    showMessageBox({
+      title: name + " Properties",
+      icon: isFolder ? ICONS.folder : ICONS.pdf,
+      text: `Name: ${name}\nType: ${isFolder ? "File Folder" : "Adobe Acrobat Document"}\nLocation: C:\\HW_SHARE\\${current === "root" ? "" : current}`,
+      buttons: [{ label: "OK", primary: true }]
+    });
+  };
+}
+function positionMenu(menu, x, y) {
+  menu.style.left = x + "px";
+  menu.style.top = y + "px";
+  requestAnimationFrame(() => {
+    const r = menu.getBoundingClientRect();
+    if (r.right > window.innerWidth) menu.style.left = (window.innerWidth - r.width - 4) + "px";
+    if (r.bottom > window.innerHeight) menu.style.top = (window.innerHeight - r.height - 34) + "px";
+  });
+}
+function removeCtxMenu() { $("activeCtxMenu")?.remove(); }
+document.addEventListener("click", removeCtxMenu);
+document.addEventListener("contextmenu", (e) => {
+  if (e.target.closest(".item") || e.target.closest(".desktop-icon")) return;
+  if (
+    e.target.closest(".desktop") &&
+    !e.target.closest(".window") &&
+    !e.target.closest(".taskbar") &&
+    !e.target.closest(".start-menu")
+  ) {
+    e.preventDefault();
+    showDesktopContextMenu(e);
+  } else {
+    removeCtxMenu();
+  }
+});
+
+/* ---------- Right-click context menu on empty desktop (Wallpaper) ---------- */
+const WALLPAPER_LABELS = {
+  solid: "Solid Color",
+  blue: "Blue Matrix",
+  green: "Green Matrix",
+  red: "Red Matrix",
+  space: "Space",
+  jupiter: "Jupiter Footage"
+};
+function showDesktopContextMenu(evt) {
+  removeCtxMenu();
+  const menu = document.createElement("div");
+  menu.className = "ctx-menu";
+  menu.id = "activeCtxMenu";
+  const items = Object.keys(WALLPAPER_LABELS)
+    .map(
+      (key) =>
+        `<div class="ctx-item${currentWallpaper === key ? " checked" : ""}" data-wp="${key}">${WALLPAPER_LABELS[key]}</div>`
+    )
+    .join("");
+  menu.innerHTML = `
+    <div class="ctx-item submenu-anchor">
+      <span>Wallpaper</span><span class="arrow">&#9656;</span>
+      <div class="submenu">${items}</div>
+    </div>
+  `;
+  document.body.appendChild(menu);
+  positionMenu(menu, evt.clientX, evt.clientY);
+  menu.querySelectorAll("[data-wp]").forEach((el) => {
+    el.onclick = (e) => {
+      e.stopPropagation();
+      removeCtxMenu();
+      setWallpaper(el.dataset.wp);
+    };
+  });
+}
+
+/* ============================================================
+   DESKTOP ICONS
+   ============================================================ */
+function selectDesktopIcon(el) {
+  document.querySelectorAll(".desktop-icon").forEach((x) => x.classList.remove("selected"));
+  el.classList.add("selected");
+}
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".desktop-icon")) {
+    document.querySelectorAll(".desktop-icon").forEach((x) => x.classList.remove("selected"));
+  }
+});
+
+/* ============================================================
+   START MENU / CLOCK
+   ============================================================ */
+function toggleStart() {
+  const sm = $("startMenu");
+  sm.classList.toggle("hidden");
+  $("startBtn").classList.toggle("open", !sm.classList.contains("hidden"));
+}
+function updateClock() {
+  $("clock").textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
+
+/* ============================================================
+   MESSAGE BOX (retro modal, replaces alert())
+   ============================================================ */
+function showMessageBox({ title, icon, text, buttons }) {
+  removeMessageBox();
+  const overlay = document.createElement("div");
+  overlay.className = "msgbox-overlay";
+  overlay.id = "activeMsgOverlay";
+
+  const box = document.createElement("div");
+  box.className = "msgbox";
+  box.id = "activeMsgBox";
+  box.innerHTML = `
+    <div class="titlebar"><div class="title-left"><span>${title}</span></div>
+      <div class="window-buttons"><button class="title-btn" id="msgboxClose">×</button></div>
+    </div>
+    <div class="msgbox-body">
+      <div>${icon}</div>
+      <div style="white-space:pre-line;line-height:16px;padding-top:2px">${text}</div>
+    </div>
+    <div class="msgbox-buttons"></div>
+  `;
+  const btnWrap = box.querySelector(".msgbox-buttons");
+  (buttons || [{ label: "OK", primary: true }]).forEach((b) => {
+    const btn = document.createElement("button");
+    btn.textContent = b.label;
+    btn.onclick = () => { removeMessageBox(); b.onClick && b.onClick(); };
+    btnWrap.appendChild(btn);
+  });
+  box.querySelector("#msgboxClose").onclick = () => removeMessageBox();
+  document.body.appendChild(overlay);
+  document.body.appendChild(box);
+}
+function removeMessageBox() {
+  $("activeMsgOverlay")?.remove();
+  $("activeMsgBox")?.remove();
+}
+
+/* ============================================================
+   SHUTDOWN / RESTART
+   ============================================================ */
+function doRestart() { location.reload(); }
+function doShutdown() {
+  const scr = document.createElement("div");
+  scr.className = "shutdown-screen";
+  scr.innerHTML = `<div>It's now safe to close this tab.</div><small>Windows is shutting down...</small>`;
+  document.body.appendChild(scr);
+  setTimeout(() => { try { window.close(); } catch (e) {} }, 400);
+}
+
+/* ============================================================
+   TERMINAL
+   ============================================================ */
+function openTerminal() { openWindow("terminalWindow", "task-terminal"); $("termInput").focus(); }
+function closeTerminal() { closeWindowById("terminalWindow", "task-terminal"); }
+function minimizeTerminal() { closeWindowById("terminalWindow", "task-terminal"); }
+
+function termPrint(html) {
+  const body = $("termBody");
+  const line = document.createElement("div");
+  line.innerHTML = html;
+  body.insertBefore(line, $("termInputLine"));
+  body.scrollTop = body.scrollHeight;
+}
+function termPromptText() { return "C:\\HW_SHARE" + (current !== "root" && current ? "" : "") + ">"; }
+
+function handleTermCommand(raw) {
+  const cmd = raw.trim();
+  termPrint(`<span class="term-cmd">${termPromptText()} ${escapeHtml(cmd)}</span>`);
+  const lower = cmd.toLowerCase();
+
+  if (lower === "") return;
+  if (lower === "help") {
+    termPrint(
+      `Available commands:\n` +
+      `  help        - shows this list of commands\n` +
+      `  shutdown    - closes this tab\n` +
+      `  restart     - reloads this tab\n` +
+      `  dir/p       - lists contents of the Physics folder\n` +
+      `  dir/c       - lists contents of the Chemistry folder\n` +
+      `  dir/e       - lists contents of the English folder\n` +
+      `  dir/m       - lists contents of the Mathematics folder\n` +
+      `  cls         - clears the screen`
+    );
+  } else if (lower === "cls") {
+    document.querySelectorAll("#termBody > div:not(#termInputLine)").forEach((n) => n.remove());
+  } else if (lower === "shutdown") {
+    termPrint(`<span class="term-ok">Shutting down HW Share...</span>`);
+    setTimeout(doShutdown, 500);
+  } else if (lower === "restart") {
+    termPrint(`<span class="term-ok">Restarting system...</span>`);
+    setTimeout(doRestart, 500);
+  } else if (lower.match(/^dir\/[pcem]$/)) {
+    const key = lower.split("/")[1];
+    const folderName = FOLDER_SWITCH[key];
+    termDir(folderName);
+  } else {
+    termPrint(`<span class="term-err">'${escapeHtml(cmd)}' is not recognized as an internal or external command,\noperable program or batch file.</span>`);
+  }
+}
+
+function termDir(folderName) {
+  const list = files[folderName] || [];
+  termPrint(` Volume in drive C is HW_SHARE\n Directory of C:\\HW_SHARE\\${folderName}\n`);
+  if (list.length === 0) {
+    termPrint(`File Not Found`);
+  } else {
+    list.forEach((f) => {
+      termPrint(`${new Date().toLocaleDateString()}  ${(Math.random()*900+100|0)} KB  ${escapeHtml(f.name)}`);
+    });
+    termPrint(`       ${list.length} File(s)`);
+  }
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function initTerminalInput() {
+  const input = $("termInput");
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const val = input.value;
+      input.value = "";
+      handleTermCommand(val);
+    }
+  });
+  $("terminalWindow").addEventListener("click", () => input.focus());
+}
+
+/* ============================================================
+   INTERNET ENGINE (dial-up simulator, always fails, ~60s)
+   ============================================================ */
+let dialupRunning = false;
+let dialupTimeouts = [];
+let audioCtx = null;
+
+function getAudioCtx() {
+  if (!audioCtx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) audioCtx = new AC();
+  }
+  return audioCtx;
+}
+
+function playTone(freq, duration, delay = 0, type = "sine", gainVal = 0.05) {
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+  const t0 = ctx.currentTime + delay;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, t0);
+  gain.gain.setValueAtTime(0, t0);
+  gain.gain.linearRampToValueAtTime(gainVal, t0 + 0.02);
+  gain.gain.linearRampToValueAtTime(0, t0 + duration);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start(t0);
+  osc.stop(t0 + duration + 0.05);
+}
+
+function playDialTone() {
+  playTone(350, 1.6, 0, "sine", 0.04);
+  playTone(440, 1.6, 0, "sine", 0.04);
+}
+function playDtmf() {
+  // crude touch-tone dialing bursts
+  for (let i = 0; i < 9; i++) {
+    playTone(600 + Math.random() * 500, 0.12, i * 0.18, "square", 0.03);
+  }
+}
+function playHandshakeScreech() {
+  // classic modem handshake: noisy sweeping tones
+  const sweeps = [1200, 2100, 1800, 2400, 900, 2600, 1500, 2000];
+  sweeps.forEach((f, i) => {
+    playTone(f, 0.35, i * 0.45, i % 2 ? "square" : "sawtooth", 0.035);
+  });
+}
+
+const DIALUP_STEPS = [
+  { duration: 2000, text: "Initializing modem device..." },
+  { duration: 5000, text: "Dialing Internet Service Provider... ATDT 1-800-555-0199", sound: () => { playDialTone(); setTimeout(playDtmf, 900); } },
+  { duration: 8000, text: "Handshaking at 33600 bps...", sound: playHandshakeScreech },
+  { duration: 10000, text: "Verifying username and password..." },
+  { duration: 10000, text: "Logging onto network..." },
+  { duration: 10000, text: "Negotiating DNS server address..." },
+  { duration: 15000, text: "Establishing dial-up connection..." }
+];
+const DIALUP_TOTAL = DIALUP_STEPS.reduce((a, s) => a + s.duration, 0); // 60000ms
+
+function openInternetEngine() {
+  openWindow("dialupWindow", "task-internet");
+  resetDialupUI();
+}
+function closeInternetEngine() { stopDialup(); closeWindowById("dialupWindow", "task-internet"); }
+function minimizeInternetEngine() { closeWindowById("dialupWindow", "task-internet"); }
+
+function resetDialupUI() {
+  stopDialup();
+  $("dialupStatusBox").innerHTML = `<div>Ready to connect. Click "Connect" to access the Internet.</div>`;
+  $("dialupPct").textContent = "0%";
+  buildProgressSegments(0);
+  $("dialupConnectBtn").disabled = false;
+  $("dialupCancelBtn").disabled = true;
+}
+
+function buildProgressSegments(pct) {
+  const wrap = $("dialupProgress");
+  wrap.innerHTML = "";
+  const totalSegs = 20;
+  const filledSegs = Math.round((pct / 100) * totalSegs);
+  for (let i = 0; i < totalSegs; i++) {
+    const seg = document.createElement("div");
+    seg.className = "dialup-progress-seg" + (i < filledSegs ? " filled" : "");
+    wrap.appendChild(seg);
+  }
+}
+
+function startDialup() {
+  if (dialupRunning) return;
+  dialupRunning = true;
+  $("dialupConnectBtn").disabled = true;
+  $("dialupCancelBtn").disabled = false;
+  $("dialupStatusBox").innerHTML = "";
+  document.body.classList.add("cursor-wait");
+
+  let elapsed = 0;
+  DIALUP_STEPS.forEach((step, idx) => {
+    const t = setTimeout(() => {
+      if (!dialupRunning) return;
+      markStepCurrent(idx);
+      if (step.sound) { try { step.sound(); } catch (e) {} }
+    }, elapsed);
+    dialupTimeouts.push(t);
+    elapsed += step.duration;
+  });
+
+  // progress bar update loop
+  const startTime = Date.now();
+  const progressTimer = setInterval(() => {
+    if (!dialupRunning) { clearInterval(progressTimer); return; }
+    const pct = Math.min(100, Math.round(((Date.now() - startTime) / DIALUP_TOTAL) * 100));
+    $("dialupPct").textContent = pct + "%";
+    buildProgressSegments(pct);
+    if (pct >= 100) clearInterval(progressTimer);
+  }, 200);
+  dialupTimeouts.push(progressTimer);
+
+  const finalTimeout = setTimeout(() => {
+    if (!dialupRunning) return;
+    finishDialupFailure();
+  }, DIALUP_TOTAL + 300);
+  dialupTimeouts.push(finalTimeout);
+}
+
+function markStepCurrent(idx) {
+  const box = $("dialupStatusBox");
+  // mark all previous as done
+  Array.from(box.children).forEach((c) => c.classList.replace?.("step-current", "step-done"));
+  const line = document.createElement("div");
+  line.className = "step-current";
+  line.innerHTML = `${DIALUP_STEPS[idx].text}<span class="dots"></span>`;
+  box.appendChild(line);
+  box.scrollTop = box.scrollHeight;
+}
+
+function stopDialup() {
+  dialupRunning = false;
+  dialupTimeouts.forEach((t) => { clearTimeout(t); clearInterval(t); });
+  dialupTimeouts = [];
+  document.body.classList.remove("cursor-wait");
+}
+
+function cancelDialup() {
+  stopDialup();
+  $("dialupStatusBox").innerHTML += `<div class="step-done">Connection cancelled by user.</div>`;
+  $("dialupConnectBtn").disabled = false;
+  $("dialupCancelBtn").disabled = true;
+}
+
+function finishDialupFailure() {
+  stopDialup();
+  const box = $("dialupStatusBox");
+  Array.from(box.children).forEach((c) => c.classList.replace?.("step-current", "step-done"));
+  box.innerHTML += `<div class="step-done" style="color:#a00">Connection failed.</div>`;
+  $("dialupConnectBtn").disabled = false;
+  $("dialupCancelBtn").disabled = true;
+  showMessageBox({
+    title: "Internet Engine",
+    icon: ICONS.error,
+    text: "Failed Accessing the Internet. Please Upgrade Software or Try Again Later.",
+    buttons: [{ label: "OK", primary: true }]
+  });
+}
+
+/* ============================================================
+   LIVE WALLPAPER - diagonal "Matrix" code rain (blue/green/red)
+   plus a "Space" starfield, and a plain Solid Color option.
+   Flows from bottom-right toward top-left.
+   ============================================================ */
+const MATRIX_CHARS = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789<>/\\[]{}=+*";
+const MATRIX_THEMES = {
+  blue: ["#cfeeff", "#8fd3ff", "#5ab4e8", "#3a8ee0", "#1e6fd6", "#1084d0", "#0d3c6e"],
+  green: ["#e2ffe4", "#a6ff9e", "#6dff5e", "#33e02c", "#1fae1c", "#158515", "#0a4a0a"],
+  red: ["#ffe6e0", "#ffb0a3", "#ff7a63", "#ff4530", "#d6231e", "#a11712", "#5c0c0a"]
+};
+let mx = {};
+let sp = {};
+let currentWallpaper = "blue";
+let wallpaperRAF = null;
+
+function stopWallpaperAnimation() {
+  if (wallpaperRAF !== null) {
+    cancelAnimationFrame(wallpaperRAF);
+    wallpaperRAF = null;
+  }
+}
+
+function matrixResize() {
+  const canvas = $("matrixCanvas");
+  if (!canvas) return;
+  mx.canvas = canvas;
+  mx.ctx = canvas.getContext("2d");
+  mx.w = canvas.width = window.innerWidth;
+  mx.h = canvas.height = window.innerHeight;
+  mx.fontSize = 16;
+  mx.diag = Math.ceil(Math.hypot(mx.w, mx.h)) + mx.fontSize * 6;
+  mx.cols = Math.floor(mx.diag / mx.fontSize);
+  mx.drops = new Array(mx.cols).fill(0).map(() => Math.random() * mx.diag);
+  mx.speeds = new Array(mx.cols).fill(0).map(() => (0.5 + Math.random() * 1.6) * mx.fontSize * 0.22);
+}
+
+function matrixFrame() {
+  const { ctx, w, h, diag, cols, fontSize, drops, speeds, theme } = mx;
+  if (!ctx) return;
+  // fade previous frame slightly (creates the trailing streak effect)
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.fillStyle = "rgba(1,5,9,0.15)";
+  ctx.fillRect(0, 0, w, h);
+
+  // rotate 135deg so the falling rain flows bottom-right -> top-left
+  ctx.translate(w / 2, h / 2);
+  ctx.rotate((135 * Math.PI) / 180);
+  ctx.font = fontSize + "px 'Courier New', monospace";
+  ctx.textAlign = "center";
+
+  for (let i = 0; i < cols; i++) {
+    const x = -diag / 2 + i * fontSize;
+    const y = drops[i] - diag / 2;
+    const isLead = Math.random() < 0.05;
+    ctx.fillStyle = isLead ? theme[0] : theme[2 + Math.floor(Math.random() * 5)];
+    ctx.fillText(MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)], x, y);
+    drops[i] += speeds[i];
+    if (drops[i] > diag) {
+      drops[i] = -Math.random() * diag * 0.25;
+      speeds[i] = (0.5 + Math.random() * 1.6) * fontSize * 0.22;
+    }
+  }
+  wallpaperRAF = requestAnimationFrame(matrixFrame);
+}
+
+function startMatrixWallpaper(themeName) {
+  mx.theme = MATRIX_THEMES[themeName] || MATRIX_THEMES.blue;
+  matrixResize();
+  wallpaperRAF = requestAnimationFrame(matrixFrame);
+}
+
+/* ---------- "Space" wallpaper: stars, small galaxies, meteors ---------- */
+function spaceResize() {
+  const canvas = $("matrixCanvas");
+  if (!canvas) return;
+  sp.canvas = canvas;
+  sp.ctx = canvas.getContext("2d");
+  sp.w = canvas.width = window.innerWidth;
+  sp.h = canvas.height = window.innerHeight;
+
+  const area = sp.w * sp.h;
+  const starCount = Math.max(90, Math.round(area / 5500));
+  const galaxyCount = Math.max(6, Math.round(starCount / 9)); // fewer than stars
+
+  sp.stars = Array.from({ length: starCount }, () => ({
+    x: Math.random() * sp.w,
+    y: Math.random() * sp.h,
+    size: 1 + Math.random() * 2,
+    angle: Math.random() * Math.PI * 2,
+    rotSpeed: (Math.random() < 0.5 ? -1 : 1) * (0.0006 + Math.random() * 0.0018),
+    phase: Math.random() * Math.PI * 2,
+    twinkleSpeed: 0.0015 + Math.random() * 0.0035
+  }));
+
+  sp.galaxies = Array.from({ length: galaxyCount }, () => ({
+    x: Math.random() * sp.w,
+    y: Math.random() * sp.h,
+    size: 7 + Math.random() * 11,
+    tilt: Math.random() * Math.PI,
+    hue: ["170,150,255", "255,255,255", "150,195,255", "255,200,235"][Math.floor(Math.random() * 4)],
+    phase: Math.random() * Math.PI * 2,
+    twinkleSpeed: 0.0005 + Math.random() * 0.001
+  }));
+
+  sp.meteors = []; // fewer at any moment than galaxies
+}
+
+function drawStar(ctx, s, t) {
+  const alpha = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * s.twinkleSpeed + s.phase));
+  const angle = s.angle + t * s.rotSpeed;
+  ctx.save();
+  ctx.translate(s.x, s.y);
+  ctx.rotate(angle);
+  ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+  ctx.lineWidth = 1;
+  const len = s.size * 2.8;
+  ctx.beginPath();
+  ctx.moveTo(0, -len);
+  ctx.lineTo(0, len * 0.45);
+  ctx.moveTo(-len * 0.55, 0);
+  ctx.lineTo(len * 0.55, 0);
+  ctx.stroke();
+  ctx.fillStyle = `rgba(255,255,255,${Math.min(1, alpha + 0.25)})`;
+  ctx.beginPath();
+  ctx.arc(0, 0, s.size * 0.55, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawGalaxy(ctx, g, t) {
+  const alpha = 0.12 + 0.33 * (0.5 + 0.5 * Math.sin(t * g.twinkleSpeed + g.phase));
+  const grad = ctx.createRadialGradient(g.x, g.y, 0, g.x, g.y, g.size);
+  grad.addColorStop(0, `rgba(${g.hue},${alpha})`);
+  grad.addColorStop(1, `rgba(${g.hue},0)`);
+  ctx.save();
+  ctx.translate(g.x, g.y);
+  ctx.rotate(g.tilt);
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.ellipse(0, 0, g.size, g.size * 0.5, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function maybeSpawnMeteor() {
+  if (sp.meteors.length < 2 && Math.random() < 0.006) {
+    const fromLeft = Math.random() < 0.5;
+    const startX = fromLeft ? -20 : sp.w + 20;
+    const startY = Math.random() * sp.h * 0.55;
+    const speed = 6 + Math.random() * 5;
+    const dir = fromLeft ? 1 : -1;
+    sp.meteors.push({ x: startX, y: startY, vx: dir * speed, vy: speed * 0.5, trail: [] });
+  }
+}
+
+function drawMeteors(ctx) {
+  maybeSpawnMeteor();
+  sp.meteors.forEach((m) => {
+    m.trail.push({ x: m.x, y: m.y });
+    if (m.trail.length > 14) m.trail.shift();
+    m.x += m.vx;
+    m.y += m.vy;
+  });
+  sp.meteors = sp.meteors.filter((m) => m.x > -40 && m.x < sp.w + 40 && m.y < sp.h + 40);
+  sp.meteors.forEach((m) => {
+    for (let i = 0; i < m.trail.length - 1; i++) {
+      const p1 = m.trail[i];
+      const p2 = m.trail[i + 1];
+      const alpha = (i / m.trail.length) * 0.8;
+      ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
+    }
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(m.x, m.y, 1.6, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
+function spaceFrame(t) {
+  const { ctx, w, h, stars, galaxies } = sp;
+  if (!ctx) return;
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.fillStyle = "#01030f";
+  ctx.fillRect(0, 0, w, h);
+  galaxies.forEach((g) => drawGalaxy(ctx, g, t));
+  stars.forEach((s) => drawStar(ctx, s, t));
+  drawMeteors(ctx);
+  wallpaperRAF = requestAnimationFrame(spaceFrame);
+}
+
+function startSpaceWallpaper() {
+  spaceResize();
+  wallpaperRAF = requestAnimationFrame(spaceFrame);
+}
+
+/* ---------- Wallpaper switcher ---------- */
+function setWallpaper(mode) {
+  currentWallpaper = mode;
+  stopWallpaperAnimation();
+  const canvas = $("matrixCanvas");
+  const video = $("jupiterVideo");
+  const desktop = document.querySelector(".desktop");
+
+  // reset both media layers before applying the chosen one
+  video.classList.add("hidden");
+  video.pause();
+
+  if (mode === "solid") {
+    canvas.classList.add("hidden");
+    desktop.style.background = "#008080";
+  } else if (mode === "jupiter") {
+    canvas.classList.add("hidden");
+    desktop.style.background = "#000";
+    video.classList.remove("hidden");
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  } else {
+    desktop.style.background = "";
+    canvas.classList.remove("hidden");
+    if (mode === "space") startSpaceWallpaper();
+    else startMatrixWallpaper(mode);
+  }
+}
+
+function initWallpaperResize() {
+  window.addEventListener("resize", () => {
+    if (currentWallpaper === "space") spaceResize();
+    else if (currentWallpaper !== "solid") matrixResize();
+  });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+initWallpaperResize();
+setWallpaper("blue");
+render();
+updateClock();
+setInterval(updateClock, 1000);
+initTerminalInput();
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { closeWindow(); closeAllMenus(); removeCtxMenu(); }
+});
+makeDraggable($("window"), $("window").querySelector(".titlebar"));
+makeDraggable($("terminalWindow"), $("terminalWindow").querySelector(".titlebar"));
+makeDraggable($("dialupWindow"), $("dialupWindow").querySelector(".titlebar"));
