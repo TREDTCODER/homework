@@ -220,7 +220,7 @@ function showAbout() {
   showMessageBox({
     title: "About HW Share",
     icon: ICONS.info,
-    text: "HW Share Explorer\nVersion 4.00.950\n\n(c) Homework Corp. All rights reserved.\nRunning on a simulated Windows NT-style shell.",
+    text: "HW Share Explorer\nVersion 4.00.950\n\n(c) Ritam's Milk Corp. All rights reserved.\nRunning on Windows NT shell.",
     buttons: [{ label: "OK", primary: true }]
   });
 }
