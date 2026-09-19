@@ -75,7 +75,7 @@ const files = {
   ],
   Chemistry: [
     { name: "chemistry_practical.pdf", path: "pdfs/chemistry/chemistry_practical.pdf" },
-    { name: "Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf", path: "pdfs/chemistry/Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf" }
+    { name: "Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf", path: "pdfs/chemistry/Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf" },
      { name: "Salt_Analysis_Comprehensive_Guide.pdf", path: "pdfs/chemistry/Salt_Analysis_Comprehensive_Guide.pdf" }
   ],
   Mathematics: [
