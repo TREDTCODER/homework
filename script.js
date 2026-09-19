@@ -76,7 +76,6 @@ const ICONS = {
 };
 
 
-/* ---------- PDF index ---------- */
 const files = {
   Physics: [
     { name: "physics_practical.pdf", path: "pdfs/physics/physics_practical.pdf" },
@@ -89,13 +88,18 @@ const files = {
     { name: "Salt_Analysis_Comprehensive_Guide.pdf", path: "pdfs/chemistry/Salt_Analysis_Comprehensive_Guide.pdf" }
   ],
   Mathematics: [
-    { name: "NONE.pdf", path: "pdfs/mathematics/NONE.pdf" }
+    { name: "Linear Inequalities Formula Sheet.pdf", path: "pdfs/mathematics/Linear%20Inequalities%20Formula%20Sheet.pdf" },
+    { name: "Permutations and Combinations Formula.pdf", path: "pdfs/mathematics/Permutations%20and%20Combinations%20Formula.pdf" },
+    { name: "Quadratic Eqns and Imaginary Numbers.pdf", path: "pdfs/mathematics/Quadratic%20Eqns%20and%20Imaginary%20Numbers.pdf" },
+    { name: "Sequences and Series Formulas.pdf", path: "pdfs/mathematics/Sequences%20and%20Series%20Formulas.pdf" },
+    { name: "Straight Lines Formulas.pdf", path: "pdfs/mathematics/Straight%20Lines%20Formulas.pdf" },
+    { name: "Trigonometry Formulas.pdf", path: "pdfs/mathematics/Trigonometry%20Formulas.pdf" },
+    { name: "logarithm_formulas_class11.pdf", path: "pdfs/mathematics/logarithm_formulas_class11.pdf" }
   ],
   English: [
     { name: "NONE.pdf", path: "pdfs/english/NONE.pdf" }
   ]
 };
-
 async function loadPdfIndex() {
   const sources = ["/api/pdfs", "pdfs/index.php", "pdfs/manifest.json"];
 
