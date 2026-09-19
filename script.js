@@ -78,10 +78,22 @@ const ICONS = {
 
 /* ---------- PDF index ---------- */
 const files = {
-  Physics: [],
-  Chemistry: [],
-  Mathematics: [],
-  English: []
+  Physics: [
+    { name: "physics_practical.pdf", path: "pdfs/physics/physics_practical.pdf" },
+    { name: "DocScanner Aug 19, 2026 7-35 AM.pdf", path: "pdfs/physics/DocScanner%20Aug%2019%2C%202026%207-35%20AM.pdf" },
+    { name: "Rotational_Dynamics_Theory_Formula_Derivation_Book .pdf", path: "pdfs/physics/Rotational_Dynamics_Theory_Formula_Derivation_Book%20.pdf" }
+  ],
+  Chemistry: [
+    { name: "chemistry_practical.pdf", path: "pdfs/chemistry/chemistry_practical.pdf" },
+    { name: "Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf", path: "pdfs/chemistry/Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf" },
+    { name: "Salt_Analysis_Comprehensive_Guide.pdf", path: "pdfs/chemistry/Salt_Analysis_Comprehensive_Guide.pdf" }
+  ],
+  Mathematics: [
+    { name: "NONE.pdf", path: "pdfs/mathematics/NONE.pdf" }
+  ],
+  English: [
+    { name: "NONE.pdf", path: "pdfs/english/NONE.pdf" }
+  ]
 };
 
 async function loadPdfIndex() {
