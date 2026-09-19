@@ -544,9 +544,9 @@ function showAbout() {
     icon: ICONS.info,
 
     text:
-      "HW Share Explorer\n" +
+      "HW Shareware Explorer\n" +
       "Version 4.00.950\n\n" +
-      "(c) Homework Corp. All rights reserved.\n" +
+      "(c) Ritam's Rizz Corp. All rights reserved.\n" +
       "Running on a simulated Windows NT-style shell.",
 
     buttons: [
