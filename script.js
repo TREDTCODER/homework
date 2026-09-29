@@ -92,7 +92,8 @@ const files = {
     { name: "chemistry_practical.pdf", path: "pdfs/chemistry/chemistry_practical.pdf" },
     { name: "Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf", path: "pdfs/chemistry/Thermodynamics_Formula_Derivation_Book_IMPROVED.pdf" },
     { name: "Salt_Analysis_Comprehensive_Guide.pdf", path: "pdfs/chemistry/Salt_Analysis_Comprehensive_Guide.pdf" },
-    { name: "Qualitative Salt Analysis Guide.pdf", path: "pdfs/chemistry/Qualitative Salt Analysis Guide.pdf" }
+    { name: "Qualitative Salt Analysis Guide.pdf", path: "pdfs/chemistry/Qualitative Salt Analysis Guide.pdf" },
+    { name: "Salt Analysis Inference Tables.pdf", path: "pdfs/chemistry/Salt Analysis Inference Tables.pdf" }
   ],
   Mathematics: [
     { name: "Linear Inequalities Formula Sheet.pdf", path: "pdfs/mathematics/Linear%20Inequalities%20Formula%20Sheet.pdf" },
